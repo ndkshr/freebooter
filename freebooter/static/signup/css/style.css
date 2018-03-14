@@ -175,3 +175,11 @@ label {
 .signup__link:focus, .signup__link:hover {
   color: #787878;
 }
+
+.navbar-brand {
+    float: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+}

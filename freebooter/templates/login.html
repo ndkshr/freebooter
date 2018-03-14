@@ -1,105 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'index.html' %}
+
+{% block head%}
 <head>
-	<title>Login | FREEBOOTER</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ url_for('static', filename='homelogin/images/icons/favicon.ico') }}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'homelogin/vendor/bootstrap/css/bootstrap.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/vendor/animate/animate.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/vendor/css-hamburgers/hamburgers.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/vendor/animsition/css/animsition.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/vendor/select2/select2.min.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/vendor/daterangepicker/daterangepicker.css') }}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/css/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='homelogin/css/main.css') }}">
-<!--===============================================================================================-->
+    <meta charset="UTF-8">
+    <title>{% block title %}LogIn{% endblock %} | FREEBOOTER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{{url_for('static', filename='signup/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='signup/scss/style.scss')}}">
+
+
 </head>
+{% endblock %}
+
 <body>
+  {% block content %}
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-34">
-						Account Login
-					</span>
+  <div class="signup__container">
+  <div class="container__child signup__thumbnail">
+    <div class="thumbnail__content text-center">
+      <h1 class="heading--primary">Welcome to FREEBOOTER.</h1>
+      <h2 class="heading--secondary">Are you ready to begin the hunt?</h2>
+    </div>
+    <div class="signup__overlay"></div>
+  </div>
+  <div class="container__child signup__form">
 
-					<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
-						<input id="first-name" class="input100" type="text" name="username" placeholder="User name">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-					</div>
+    <form action="" method="POST">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input class="form-control" type="text" name="username" id="username" placeholder="" value="{{request.form.username}}" required / >
+      </div>
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Sign in
-						</button>
-					</div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password" placeholder="" value="{{request.form.password}}" required />
+      </div>
 
-					<div class="w-full text-center p-t-27 p-b-239">
-						<span class="txt1">
-							Forgot
-						</span>
-
-						<a href="#" class="txt2">
-							User name / password?
-						</a>
-					</div>
-
-					<div class="w-full text-center">
-						<a href="{{url_for('signup')}}" class="txt3">
-							Sign Up
-						</a>
-					</div>
-				</form>
-
-				<div class="login100-more" style="background-image: url(https://pre00.deviantart.net/2d2b/th/pre/i/2016/321/0/9/jack_sparrow_wpap_by_ialinaya-daoq01c.jpg);"></div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div id="dropDownSelect1"></div>
-
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='homelogin/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='homelogin/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='homelogin/vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{url_for('static', filename='homelogin/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='homelogin/vendor/select2/select2.min.js')}}"></script>
-	<script>
-		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect1')
-		});
-	</script>
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='homelogin/vendor/daterangepicker/moment.min.js')}}"></script>
-	<script src="{{url_for('static', filename='homelogin/vendor/daterangepicker/daterangepicker.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='homelogin/vendor/countdowntime/countdowntime.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{url_for('static', filename='/homelogin/js/main.js')}}"></script>
+      <div class="m-t-lg">
+        <ul class="list-inline">
+          <li>
+            <input class="btn btn--form" type="submit" value="LogIn" />
+          </li>
+          <li>
+            <a class="signup__link" style="text-decoration:none;" href="{{url_for('signup')}}">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </form>
+    <p style="color:red;">
+      {{error}}
+    </p>
+  </div>
+</div>
+{% endblock %}
 
 </body>
+
+<!--
 </html>
+-->

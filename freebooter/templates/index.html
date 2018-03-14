@@ -1,16 +1,19 @@
-<html>
+{% extends 'header.html'%}
 
-<head>
-  <title>Home | FREEBOOTER</title>
-</head>
+{% block title %}
+Home
+{% endblock %}
+{%block content%}
+<style>
+body{
+  background: url("/static/bg/bg1.jpg");
+  background-size: 1400px 641px;
+}
+</style>
 
 <body>
-  <a href="{{url_for('login')}}">
-    <button type="button">Login</button>
-  </a>
-  <a href="{{url_for('signup')}}">
-    <button type="button">Sign Up</button>
-  </a>
+homepage
 </body>
+{% endblock %}
 
 </html>

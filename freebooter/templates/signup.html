@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en" >
+{% extends 'index.html' %}
 
+{% block head %}
 <head>
-  <meta charset="UTF-8">
-  <title>Signup | FREEBOOTER</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>{% block title %}Sign Up{% endblock %} | FREEBOOTER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
-<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
-<link rel="stylesheet" href="{{url_for('static', filename='signup/css/style.css')}}">
-<link rel="stylesheet" href="{{url_for('static', filename='signup/scss/style.scss')}}">
-
-
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{{url_for('static', filename='signup/css/style.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='signup/scss/style.scss')}}">
 </head>
+{% endblock %}
 
 <body>
-
+{% block content %}
   <div class="signup__container">
   <div class="container__child signup__thumbnail">
     <div class="thumbnail__content text-center">
@@ -28,22 +27,22 @@
     <div class="signup__overlay"></div>
   </div>
   <div class="container__child signup__form">
-    <form action="#">
+    <form action="{{url_for('signup')}}" method="POST">
       <div class="form-group">
         <label for="username">Username</label>
-        <input class="form-control" type="text" name="username" id="username" placeholder="" required />
+        <input class="form-control" type="text" name="username" id="username" placeholder="" value="{{request.form.username}}" required />
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input class="form-control" type="text" name="email" id="email" placeholder="" required />
+        <label for="name">Name</label>
+        <input class="form-control" type="text" name="name" id="name" placeholder="" value="{{request.form.name}}" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input class="form-control" type="password" name="password" id="password" placeholder="" required />
+        <input class="form-control" type="password" name="password" id="password" placeholder="" value="{{request.form.password}}" required />
       </div>
       <div class="form-group">
-        <label for="passwordRepeat">Repeat Password</label>
-        <input class="form-control" type="password" name="passwordRepeat" id="passwordRepeat" placeholder="" required />
+        <label for="repeat">Repeat Password</label>
+        <input class="form-control" type="password" name="repeat" id="repeat" placeholder="" value="{{request.form.repeat}}" red />
       </div>
       <div class="m-t-lg">
         <ul class="list-inline">
@@ -51,15 +50,17 @@
             <input class="btn btn--form" type="submit" value="Register" />
           </li>
           <li>
-            <a class="signup__link" href="{{url_for('login')}}">I am already a member</a>
+            <a class="signup__link" style="text-decoration:none;" href="{{url_for('login')}}">I am already a member</a>
           </li>
         </ul>
       </div>
     </form>
+    <p style="color:red;">
+      {{error}}
+    </p>
   </div>
 </div>
-
-
+{% endblock %}
 
 </body>
 

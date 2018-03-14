@@ -1,0 +1,51 @@
+{% extends 'header.html'%}
+
+{% block title %}
+Leaderboard
+{% endblock %}
+
+<body>
+{%block content%}
+
+<style>
+.table td{
+  text-align: center
+}
+.table th{
+  text-align: center
+}
+</style>
+
+<div class="container table-responsive">
+  <h1>Leaderboard</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Firstname</th>
+        <th>Question</th>
+        <th>Phase</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+{% if lead %}
+  {% for row in lead %}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>{{row[2]}}</td>
+          <td>{{row[4]}}</td>
+          <td>{{row[5]}}</td>
+          <td>{{row[6]}}</td>
+        </tr>
+  {% endfor %}
+{% endif %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}
+</body>
+
+</html>
