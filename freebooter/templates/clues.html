@@ -1,0 +1,23 @@
+{% extends 'header.html'%}
+
+{% block title %}
+Clues
+{% endblock %}
+
+<body>
+{%block content%}
+<ul>
+  {% if clue_list %}
+  {% for clue in clue_list %}
+  <li style="text-white">
+    <h4 style="color:white">{{clue[3]}}</h4>
+  </li>
+  {% endfor %}
+  {% else %}
+  <h3 style="color:white">No clues at the moment</h3>
+  {% endif %}
+</ul>
+{% endblock %}
+</body>
+
+</html>

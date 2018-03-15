@@ -8,14 +8,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .transparent{
+      border-width: 0px;
+    -webkit-box-shadow: 0px 0px;
+    box-shadow: 0px 0px;
+    background-color: rgba(0,0,0,0.0);
+    background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+    background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+    }
+    .navbar-inverse .navbar-brand {
+	     color: #c3c2c2;
+}
+  </style>
   {% block head%}{%endblock%}
 </head>
 
-<body>
+<body style="background: url('/static/creative/img/header.png' );">
   <div class='container-fluid' style='min-height:100%; width:100%'>
 
 
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar transparent navbar-inverse">
  <div class="container-fluid">
    <div class="navbar-header">
      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,24 +37,28 @@
        <span class="icon-bar"></span>
        <span class="icon-bar"></span>
      </button>
-     <a class="navbar-brand" href="{{url_for('homepage')}}">FREEBOOTER</a>
+     <a class="navbar-brand" href="{{url_for('homepage')}}"><strong>FREEBOOTER</strong></a>
    </div>
    <div class="collapse navbar-collapse" id="myNavbar">
      <ul class="nav navbar-nav">
-       <li class="active"><a href="{{url_for('homepage')}}">Home</a></li>
-       <li><a href="#">Rules</a></li>
-       <li><a href="{{url_for('leaderboard')}}">Leaderboard</a></li>
-       <li><a href="#">The Team</a></li>
+       <li class="active"><a href="{{url_for('homepage')}}"><strong>Home</strong></a></li>
+       <li><a href="#"><strong>Rules</strong></a></li>
+       <li><a href="{{url_for('leaderboard')}}"><strong>Leaderboard</strong></a></li>
+       {% if session.logged_in %}
+       <li>
+         <a href="{{url_for('clues')}}"><span class="glyphicon glyphicon-question-sign"></span><strong> Clues</strong></a>
+       </li>
+       {% endif %}
      </ul>
      <ul class="nav navbar-nav navbar-right">
        {% if session.logged_in %}
        <li>
-         <a href="{{url_for('user')}}"><span class="glyphicon glyphicon-play"> Play</span></a>
+         <a href="{{url_for('user')}}"><span class="glyphicon glyphicon-play"></span><strong> Play</strong></a>
        </li>
-       <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+       <li><a href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span><strong> Log Out</strong></a></li>
        {% else %}
-       <li><a href="{{url_for('signup')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-       <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+       <li><a href="{{url_for('signup')}}"><span class="glyphicon glyphicon-user"></span><strong> Sign Up</strong></a></li>
+       <li><a href="{{url_for('login')}}"><span class="glyphicon glyphicon-log-in"></span><strong> Login</strong></a></li>
        {% endif %}
      </ul>
    </div>

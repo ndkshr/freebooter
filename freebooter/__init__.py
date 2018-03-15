@@ -11,6 +11,10 @@ app = Flask(__name__)
 
 attempted_username=''
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html")
+
 
 def logout_required(f):
     @wraps(f)
@@ -19,7 +23,7 @@ def logout_required(f):
             return f(*args,**kwargs)
         else:
             flash("You need to logout first!")
-            return redirect(url_for('user', messages=""))
+            return redirect(url_for('user'))
     return wrap
 
 
@@ -36,7 +40,28 @@ def login_required(f):
 @app.route('/')
 def homepage():
     #flash("hello")
-    return render_template("index.html")
+    return render_template("creativeindex0.html")
+
+@app.route('/clues/')
+@login_required
+def clues():
+    #flash("hello")
+    clue_list = []
+    try:
+        c,conn = connection()
+        cur_qn = session['cur_qn']
+        cur_phase = session['cur_phase']
+        clue_list = c.execute("SELECT * FROM clues WHERE qid = (%s) AND qn_phase = (%s)",(cur_qn,cur_phase))
+        if int(clue_list)>0:
+            clue_list = c.fetchall()
+        return render_template("clues.html",clue_list = clue_list)
+    except Exception as e:
+        flash(e)
+        return render_template("clues.html",clue_list = clue_list)
+    return render_template("clues.html",clue_list = clue_list)
+
+
+
 
 @app.route('/leaderboard/')
 def leaderboard():
@@ -84,10 +109,10 @@ def user():
                     else:
                         pass
                     flash('Congratulations!')
-                    return render_template("user.html", cur_qn = cur_qn, cur_phase = cur_phase, error=error)
+                    return render_template("user.html",username = username ,cur_qn = cur_qn, cur_phase = cur_phase, error=error)
                 else:
                     error = 'Wrong answer!'
-                    return render_template("user.html", cur_qn = cur_qn, cur_phase = cur_phase, error=error)
+                    return render_template("user.html", username = username,cur_qn = cur_qn, cur_phase = cur_phase, error=error)
         c.close()
         conn.close()
         gc.collect()
