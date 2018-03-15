@@ -6,8 +6,22 @@ Level: Completed
 
 <body>
 {%block content%}
-
-Congratulations! you have completed the level.
+<div align="center" style="vertical-align:middle">
+  <h1 style="color:white; vertical-align:middle;" >
+    Congratulations! you have completed the level.
+  </h1>
+  <div class="m-t-lg">
+    <ul class="list-inline">
+      <li>
+        <a href="{{url_for('logout')}}">
+        <button type="submit" class="btn btn--form btn-primary">
+              <span class="glyphicon glyphicon-log-out"></span> Logout
+        </button>
+      </a>
+      </li>
+    </ul>
+  </div>
+</div>
 {% endblock %}
 </body>
 
