@@ -93,6 +93,7 @@ def user():
     cur_qn = session['cur_qn']
     #flash(username + str(cur_phase) + str(cur_qn))
     if cur_qn > MAX_QN:
+        session['congo'] = True
         return redirect(url_for('congo'))
     try:
         c, conn = connection()
@@ -107,6 +108,7 @@ def user():
                     cur_qn = cur_qn + 1
                     session['cur_qn'] = cur_qn
                     if cur_qn > MAX_QN:
+                        session['congo'] = True
                         return redirect(url_for('congo'))
                     else:
                         pass
@@ -224,6 +226,7 @@ def signup():
     except Exception as e:
         flash("Error!")
         return render_template("signup.html")
+
 
 
 if __name__ == "__main__":

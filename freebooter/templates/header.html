@@ -25,7 +25,11 @@
   {% block head%}{%endblock%}
 </head>
 
+{% if session.congo %}
+<body style="background: url('/static/creative/img/fireworks.gif' );background-size:1500px 735px;background-repeat: no-repeat;">
+{%else%}
 <body style="background: url('/static/creative/img/header.png' );">
+  {%endif%}
   <div class='container-fluid' style='min-height:100%; width:100%'>
 
 
@@ -42,7 +46,7 @@
    <div class="collapse navbar-collapse" id="myNavbar">
      <ul class="nav navbar-nav">
        <li class="active"><a href="{{url_for('homepage')}}"><strong>Home</strong></a></li>
-       <li><a href="{{url_for('homepage')}}"><strong>Rules</strong></a></li>
+       <li><a href="#about" name = "about"><strong>Rules</strong></a></li>
        <li><a href="{{url_for('leaderboard')}}"><strong>Leaderboard</strong></a></li>
        {% if session.logged_in %}
        <li>

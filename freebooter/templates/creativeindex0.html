@@ -91,8 +91,11 @@ header.masthead {
             </ul>
             {% else %}
             <ul class="nav navbar-nav navbar-right">
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
               <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url_for('clues')}}"><span class="glyphicon glyphicon-question-sign"></span> Clues</a></li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{{url_for('user')}}">Play</a>
+              </li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </ul>
             {% endif %}
           </ul>
@@ -118,7 +121,7 @@ header.masthead {
       </div>
     </header>
 
-    <section class="bg-primary" id="about">
+    <a name="about"><section class="bg-primary" id="about" name="about"></a>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto text-center">
