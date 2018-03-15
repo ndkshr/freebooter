@@ -56,7 +56,8 @@ def clues():
             clue_list = c.fetchall()
         return render_template("clues.html",clue_list = clue_list)
     except Exception as e:
-        flash(e)
+        #flash(e)
+        flash("Error!")
         return render_template("clues.html",clue_list = clue_list)
     return render_template("clues.html",clue_list = clue_list)
 
@@ -69,14 +70,15 @@ def leaderboard():
     try:
         c, conn = connection()
         lead = c.execute("SELECT * FROM users ORDER BY cur_qn DESC, time_last_qn ASC")
-        flash(lead)
+        #flash(lead)
         if int(lead)>0:
-            flash("lead")
+            #flash("lead")
             lead = c.fetchall()
         return render_template("leaderboard.html",lead = lead)
 
     except Exception as e:
-        flash(e)
+        #flash(e)
+        flash("Error!")
         return render_template("leaderboard.html", lead = lead)
 
     return render_template("leaderboard.html", lead = lead)
@@ -89,7 +91,7 @@ def user():
     username = session['username']
     cur_phase = session['cur_phase']
     cur_qn = session['cur_qn']
-    flash(username + str(cur_phase) + str(cur_qn))
+    #flash(username + str(cur_phase) + str(cur_qn))
     if cur_qn > MAX_QN:
         return redirect(url_for('congo'))
     try:
@@ -117,11 +119,11 @@ def user():
         conn.close()
         gc.collect()
     except Exception as e:
-        flash('haha')
-        flash(e)
+        flash("Error!")
+        #flash(e)
         return render_template("user.html", cur_qn = cur_qn, cur_phase = cur_phase, error=error)
 
-    flash('welcome')
+    #flash('welcome')
     return render_template("user.html", cur_qn = cur_qn, cur_phase = cur_phase, error=error)
 
 
@@ -129,7 +131,7 @@ def user():
 @login_required
 def logout():
     session.clear()
-    flash("Logged Out")
+    #flash("Logged Out")
     gc.collect()
     return redirect(url_for('homepage'))
 
@@ -155,7 +157,7 @@ def login():
                     session['username'] = request.form['username']
                     session['cur_qn'] = cur_qn
                     session['cur_phase'] = cur_phase
-                    flash('logged_in')
+                    #flash('logged_in')
                     return redirect(url_for('user'))
                 else:
                     error = 'Invalid Password!'
@@ -168,8 +170,8 @@ def login():
         return render_template("login.html", error=error)
 
     except Exception as e:
-        flash('jaja')
-        flash(e)
+        flash("Error!")
+        #flash(e)
         return render_template("login.html", error=error)
 
 
@@ -208,7 +210,7 @@ def signup():
                     c.execute("INSERT INTO users (username, name, password, cur_qn, cur_phase) VALUES (%s,%s,%s,%s,%s)",
                     (username, name, sha256_crypt.encrypt(password), '1', '1'))
                     conn.commit()
-                    flash('logged in')
+                    #flash('logged in')
                     c.close()
                     conn.close()
                     gc.collect()
@@ -220,7 +222,7 @@ def signup():
         c, conn = connection()
         return render_template("signup.html")
     except Exception as e:
-        flash(e)
+        flash("Error!")
         return render_template("signup.html")
 
 
