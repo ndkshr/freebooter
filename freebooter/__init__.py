@@ -224,13 +224,66 @@ def signup():
         c, conn = connection()
         return render_template("signup.html")
     except Exception as e:
-        flash("Error!")
+        flash("Error! nandu")
         return render_template("signup.html")
 
+""""""" Admin Panel Starts """""""
+
+@app.route('/admin_question/', methods=["GET","POST"])
+def admin_question():
+    error = ''
+    try:
+        if request.method == 'POST':
+            qid = request.form['qid']
+            phase = request.form['phase']
+            answer = request.form['answer']
+            c, conn = connection()
+            x = c.execute("INSERT INTO questions(qid,qn_phase,answer) VALUES (%s,%s,%s)", (qid,phase,answer))
+            conn.commit()
+            flash("Success")
+            return render_template("nimda_panel.html")
+        else:
+            return render_template("admin_question.html")
+    except Exception as e:
+        flash("Error! nandu")
+        return render_template("admin_question.html")
+
+
+
+@app.route('/nimda_panel/', methods=["GET","POST"])
+def admin_panel():
+    #flash("Success")
+    return render_template("nimda_panel.html")
+
+
+@app.route('/admin_clue/', methods=["GET","POST"])
+def admin_clue():
+    error = ''
+    try:
+        if request.method == 'POST':
+            cid = request.form['cid']
+            qid = request.form['qid']
+            phase = request.form['phase']
+            content = request.form['content']
+            c, conn = connection()
+            x = c.execute("INSERT INTO clues(cid,qid,qn_phase,content) VALUES (%s,%s,%s,%s)", (cid,qid,phase,content))
+            conn.commit()
+            flash("Success")
+            return render_template("nimda_panel.html")
+        else:
+            return render_template("admin_clue.html")
+    except Exception as e:
+        flash("Error! nandu")
+        return render_template("admin_clue.html")
+
+
+""""""" Admin Panel Ends """""""
 
 
 if __name__ == "__main__":
     app.secret_key = 'super secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.debug = True
-    app.run(host = '0.0.0.0')
+    #app.run(host = '0.0.0.0')
+    #app.run(threaded=True)
+    app.run(debug=True, threaded=True, host='0.0.0.0', port=8080)
