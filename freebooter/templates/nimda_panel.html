@@ -1,0 +1,28 @@
+{% extends 'header.html' %}
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Sign Up{% endblock %} | FREEBOOTER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300'>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{{url_for('static', filename='admin/css/style.css')}}">
+</head>
+
+{% endblock %}
+<body>
+  {% block content %}
+<div>
+  <br><br><br>
+  <a href="{{url_for('admin_question')}}">
+  <button class="block"><b>Upload Questions<b></button><br><br><br><br>
+  <a href="{{url_for('admin_clue')}}">
+  <button class="block"><b>Upload Clues<b></button>
+
+</div>
+{% endblock %}
+</body>
